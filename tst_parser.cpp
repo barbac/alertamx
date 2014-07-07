@@ -20,6 +20,45 @@ u8R"(<?xml version="1.0" encoding="utf-8"?>
   <scope>Public</scope>
   <code>08</code>
   <info>
+    <language>es-419</language>
+    <category>Met</category>
+    <event>Aviso de Ciclón Tropical en el Atlántico</event>
+    <responseType>Execute</responseType>
+    <urgency>Immediate</urgency>
+    <severity>Unknown</severity>
+    <certainty>Observed</certainty>
+    <effective>2014-07-04T10:15:00-05:00</effective>
+    <expires>2014-07-04T22:15:00-05:00</expires>
+    <senderName>Comisión Nacional del Agua - Servicio Meteorológico Nacional</senderName>
+    <headline>HURACÁN “ARTHUR” AHORA CON CATEGORIA I</headline>
+    <description>El huracán “Arthur”, se encuentra al oriente del Estado de Maryland, EUA. Por su lejanía y trayectoria no representa riesgo para México</description>
+    <instruction>ninguno</instruction>
+    <web>http://smn.cna.gob.mx/</web>
+    <contact>webmaster@conagua.gob.mx</contact>
+    <parameter>
+      <valueName>Elaboró</valueName>
+      <value>MÓNICA JIMÉNEZ</value>
+    </parameter>
+    <parameter>
+      <valueName>Revisó</valueName>
+      <value>EDUARDO SÁNCHEZ</value>
+    </parameter>
+    <parameter>
+      <valueName>layer:Google:Region:0.1</valueName>
+      <value>Quintana Roo y Quintana Roo</value>
+    </parameter>
+    <parameter>
+      <valueName>categoría</valueName>
+      <value>Huracán categoría III</value>
+    </parameter>
+    <parameter>
+      <valueName>distancia</valueName>
+      <value>morethan500km</value>
+    </parameter>
+    <area>
+      <areaDesc>2217 KM al nor-noreste de Cabo Catoche, Q. Roo 2241 KM al nor-noreste de Cancún, Q. Roo 2280 KM al nor-noreste de Río Lagartos, Yuc. 2366 KM al nor-noreste de Tulum, Q. Roo 2342 KM al nor-noreste de Dzilam, Yuc.</areaDesc>
+      <circle>13.752724664397,-108.2373046875 2502.6978654433624</circle>
+    </area>
   </info>
 </alert>
 )";
