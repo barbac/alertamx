@@ -6,10 +6,12 @@ CONFIG -= app_bundle
 
 HEADERS += \
     capalert.h \
+    capinfo.h \
     parser.h \
 
 SOURCES += \
     capalert.cpp \
+    capinfo.cpp \
     parser.cpp \
 
 TARGET = tst_parser
