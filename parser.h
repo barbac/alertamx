@@ -14,6 +14,8 @@ public:
     void parseInfo(const QDomElement &infoElement, CAPInfo *info) const;
 
 private:
+    int enumFromString(const QMetaObject &metaObject, const char *enumName,
+                       const QString &value) const;
 };
 
 #endif

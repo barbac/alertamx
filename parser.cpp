@@ -66,14 +66,21 @@ void Parser::parseInfo(const QDomElement &infoElement, CAPInfo *info) const
         if (tag.toLower() == QLatin1String("language")) {
             info->m_language = child.text();
         } else if (tag.toLower() == QLatin1String("category")) {
-            auto metaObject = CategoryGadget::staticMetaObject;
-            int index = metaObject.indexOfEnumerator("Category");
-            QMetaEnum categoryEnum = metaObject.enumerator(index);
-            bool ok;
-            int value = categoryEnum.keyToValue(child.text().toLatin1(), &ok);
-            if (!ok)
-                qCritical() << "Unknown Category value: " << child.text();
+            int value = enumFromString(CategoryGadget::staticMetaObject,
+                                       "Category", child.text());
             info->m_category = static_cast<Category>(value);
         }
     }
+}
+
+int Parser::enumFromString(const QMetaObject &metaObject, const char *enumName,
+                           const QString &value) const
+{
+    int index = metaObject.indexOfEnumerator(enumName);
+    QMetaEnum categoryEnum = metaObject.enumerator(index);
+    bool ok;
+    int myEnum = categoryEnum.keyToValue(value.toLatin1(), &ok);
+    if (!ok)
+        qCritical("Unknown %s value: %s", enumName, qPrintable(value));
+    return myEnum;
 }
