@@ -80,19 +80,19 @@ void TestParser::initTestCase()
 
 void TestParser::alert()
 {
-    QCOMPARE(m_result->identifier,
+    QCOMPARE(m_result->m_identifier,
              QStringLiteral("194aafab-f636-49ef-ad5e-37a1aef8d132"));
-    QCOMPARE(m_result->sender, QStringLiteral("smn.cna.gob.mx"));
-    QCOMPARE(m_result->sent, QStringLiteral("2014-07-04T10:15:00-05:00"));
-    QCOMPARE(static_cast<int>(m_result->status), static_cast<int>(Status::Actual));
-    QCOMPARE(static_cast<int>(m_result->msgType), static_cast<int>(MsgType::Alert));
-    QCOMPARE(static_cast<int>(m_result->scope), static_cast<int>(Scope::Public));
-    QCOMPARE(m_result->code, QStringLiteral("08"));
+    QCOMPARE(m_result->m_sender, QStringLiteral("smn.cna.gob.mx"));
+    QCOMPARE(m_result->m_sent, QStringLiteral("2014-07-04T10:15:00-05:00"));
+    QCOMPARE(static_cast<int>(m_result->m_status), static_cast<int>(Status::Actual));
+    QCOMPARE(static_cast<int>(m_result->m_msgType), static_cast<int>(MsgType::Alert));
+    QCOMPARE(static_cast<int>(m_result->m_scope), static_cast<int>(Scope::Public));
+    QCOMPARE(m_result->m_code, QStringLiteral("08"));
 }
 
 void TestParser::parseInfo()
 {
-    CAPInfo *info = m_result->info;
+    CAPInfo *info = m_result->m_info;
     QCOMPARE(info->m_language, QStringLiteral("es-419"));
 
     QCOMPARE(static_cast<int>(info->m_category),

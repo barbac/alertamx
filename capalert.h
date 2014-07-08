@@ -32,21 +32,21 @@ class CAPAlert: public QObject
 {
 public:
     explicit CAPAlert(QObject *parent);
-    QString identifier;
-    QString sender;
-    QString sent;
-    Status status;
-    MsgType msgType;
-    //QString source;
-    Scope scope;
-    //QString restriction;
-    //QString addresses;
-    QString code;
-    //QString note;
-    //QString references;
-    //QString incidents;
+    QString m_identifier;
+    QString m_sender;
+    QString m_sent;
+    Status m_status;
+    MsgType m_msgType;
+    //QString m_source;
+    Scope m_scope;
+    //QString m_restriction;
+    //QString m_addresses;
+    QString m_code;
+    //QString m_note;
+    //QString m_references;
+    //QString m_incidents;
     //TODO: looks lie this should be a list
-    CAPInfo *info = nullptr;
+    CAPInfo *m_info = nullptr;
 };
 
 #endif // CAPALERT_H

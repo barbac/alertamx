@@ -34,21 +34,21 @@ bool Parser::parseAlert(const QDomElement &alertElement, CAPAlert *alert) const
         QDomElement child = node.toElement();
         QString tag = child.tagName();
         if (tag.toLower() == QLatin1String("identifier")) {
-            alert->identifier = child.text();
+            alert->m_identifier = child.text();
         } else if (tag.toLower() == QLatin1String("sender")) {
-            alert->sender = child.text();
+            alert->m_sender = child.text();
         } else if (tag.toLower() == QLatin1String("sent")) {
-            alert->sent = child.text();
+            alert->m_sent = child.text();
         } else if (tag.toLower() == QLatin1String("code")) {
-            alert->code = child.text();
+            alert->m_code = child.text();
         } else if (tag.toLower() == QLatin1String("status")) {
-            alert->status = static_cast<Status>(child.text().toInt());
+            alert->m_status = static_cast<Status>(child.text().toInt());
         } else if (tag.toLower() == QLatin1String("msgtype")) {
-            alert->msgType = static_cast<MsgType>(child.text().toInt());
+            alert->m_msgType = static_cast<MsgType>(child.text().toInt());
         } else if (tag.toLower() == QLatin1String("scope")) {
-            alert->scope = static_cast<Scope>(child.text().toInt());
+            alert->m_scope = static_cast<Scope>(child.text().toInt());
         } else if (tag.toLower() == QLatin1String("info")) {
-            parseInfo(child, alert->info);
+            parseInfo(child, alert->m_info);
         }
     }
     return true;

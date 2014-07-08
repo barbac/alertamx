@@ -4,5 +4,5 @@
 CAPAlert::CAPAlert(QObject *parent) :
     QObject(parent)
 {
-    info = new CAPInfo(this);
+    m_info = new CAPInfo(this);
 }
