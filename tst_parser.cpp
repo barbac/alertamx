@@ -97,6 +97,31 @@ void TestParser::parseInfo()
 
     QCOMPARE(static_cast<int>(info->m_category),
              static_cast<int>(Category::Met));
+    QCOMPARE(info->m_event,
+             QStringLiteral("Aviso de Ciclón Tropical en el Atlántico"));
+    //TODO: find out what exactly does this means:
+    //(2)   Multiple instances MAY occur within an <info> block.
+    QCOMPARE(static_cast<int>(info->m_responseType),
+             static_cast<int>(ResponseType::Execute));
+    QCOMPARE(static_cast<int>(info->m_urgency),
+             static_cast<int>(Urgency::Immediate));
+    QCOMPARE(static_cast<int>(info->m_severity),
+             static_cast<int>(Severity::Unknown));
+    //(3) For backward compatibility with CAP 1.0, the deprecated value of
+    //“Very Likely” SHOULD be treated as equivalent to “Likely”.
+    QCOMPARE(static_cast<int>(info->m_certainty),
+             static_cast<int>(Certainty::Observed));
+    //QString m_audience;
+    //eventCode
+    QCOMPARE(info->m_effective, QStringLiteral("2014-07-04T10:15:00-05:00"));
+    //QString m_onset;
+    QCOMPARE(info->m_expires, QStringLiteral("2014-07-04T22:15:00-05:00"));
+    QCOMPARE(info->m_senderName, QStringLiteral("Comisión Nacional del Agua - Servicio Meteorológico Nacional"));
+    QCOMPARE(info->m_headline, QStringLiteral("HURACÁN “ARTHUR” AHORA CON CATEGORIA I"));
+    QCOMPARE(info->m_description, QStringLiteral("El huracán “Arthur”, se encuentra al oriente del Estado de Maryland, EUA. Por su lejanía y trayectoria no representa riesgo para México"));
+    QCOMPARE(info->m_instruction, QStringLiteral("ninguno"));
+    QCOMPARE(info->m_web, QStringLiteral("http://smn.cna.gob.mx/"));
+    QCOMPARE(info->m_contact, QStringLiteral("webmaster@conagua.gob.mx"));
 }
 
 QTEST_GUILESS_MAIN(TestParser)

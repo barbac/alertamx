@@ -69,6 +69,40 @@ void Parser::parseInfo(const QDomElement &infoElement, CAPInfo *info) const
             int value = enumFromString(CategoryGadget::staticMetaObject,
                                        "Category", child.text());
             info->m_category = static_cast<Category>(value);
+        } else if (tag.toLower() == QLatin1String("event")) {
+            info->m_event = child.text();
+        } else if (tag.toLower() == QLatin1String("responsetype")) {
+            int value = enumFromString(ResponseTypeGadget::staticMetaObject,
+                                       "ResponseType", child.text());
+            info->m_responseType = static_cast<ResponseType>(value);
+        } else if (tag.toLower() == QLatin1String("urgency")) {
+            int value = enumFromString(UrgencyGadget::staticMetaObject,
+                                       "Urgency", child.text());
+            info->m_urgency = static_cast<Urgency>(value);
+        } else if (tag.toLower() == QLatin1String("severity")) {
+            int value = enumFromString(SeverityGadget::staticMetaObject,
+                                       "Severity", child.text());
+            info->m_severity = static_cast<Severity>(value);
+        } else if (tag.toLower() == QLatin1String("certainty")) {
+            int value = enumFromString(CertaintyGadget::staticMetaObject,
+                                       "Certainty", child.text());
+            info->m_certainty = static_cast<Certainty>(value);
+        } else if (tag.toLower() == QLatin1String("effective")) {
+            info->m_effective = child.text();
+        } else if (tag.toLower() == QLatin1String("expires")) {
+            info->m_expires = child.text();
+        } else if (tag.toLower() == QLatin1String("sendername")) {
+            info->m_senderName = child.text();
+        } else if (tag.toLower() == QLatin1String("headline")) {
+            info->m_headline = child.text();
+        } else if (tag.toLower() == QLatin1String("description")) {
+            info->m_description = child.text();
+        } else if (tag.toLower() == QLatin1String("instruction")) {
+            info->m_instruction = child.text();
+        } else if (tag.toLower() == QLatin1String("web")) {
+            info->m_web = child.text();
+        } else if (tag.toLower() == QLatin1String("contact")) {
+            info->m_contact = child.text();
         }
     }
 }
