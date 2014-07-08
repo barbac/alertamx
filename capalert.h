@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QString>
 
+class CAPInfo;
+
 enum class Status {
     Actual,
     Exercise,
@@ -43,7 +45,8 @@ public:
     //QString note;
     //QString references;
     //QString incidents;
-    ///Info info;
+    //TODO: looks lie this should be a list
+    CAPInfo *info = nullptr;
 };
 
 #endif // CAPALERT_H
