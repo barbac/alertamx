@@ -101,8 +101,51 @@ typedef CertaintyGadget::Certainty Certainty;
 class CAPInfo : public QObject
 {
     Q_OBJECT
-public:
 
+    Q_PROPERTY(QString language NOTIFY languageChanged MEMBER m_language)
+    Q_PROPERTY(Category category NOTIFY categoryChanged MEMBER m_category)
+    Q_PROPERTY(QString event NOTIFY eventChanged MEMBER m_event)
+    Q_PROPERTY(ResponseType responseType NOTIFY responseTypeChanged MEMBER m_responseType)
+    Q_PROPERTY(Urgency urgency NOTIFY urgencyChanged MEMBER m_urgency)
+    Q_PROPERTY(Severity severity NOTIFY severityChanged MEMBER m_severity)
+    Q_PROPERTY(Certainty certainty NOTIFY certaintyChanged MEMBER m_certainty)
+    //Q_PROPERTY(QString audience NOTIFY audienceChanged MEMBER m_audience)
+    //eventCode
+    Q_PROPERTY(QString effective NOTIFY effectiveChanged MEMBER m_effective)
+    //Q_PROPERTY(QString onset NOTIFY onsetChanged MEMBER m_onset)
+    Q_PROPERTY(QString expires NOTIFY expiresChanged MEMBER m_expires)
+    Q_PROPERTY(QString senderName NOTIFY senderNameChanged MEMBER m_senderName)
+    Q_PROPERTY(QString headline NOTIFY headlineChanged MEMBER m_headline)
+    Q_PROPERTY(QString description NOTIFY descriptionChanged MEMBER m_description)
+    Q_PROPERTY(QString instruction NOTIFY instructionChanged MEMBER m_instruction)
+    Q_PROPERTY(QString web NOTIFY webChanged MEMBER m_web)
+    Q_PROPERTY(QString contact NOTIFY contactChanged MEMBER m_contact)
+    //parameters;
+    //area
+
+signals:
+    void languageChanged();
+    void categoryChanged();
+    void eventChanged();
+    void responseTypeChanged();
+    void urgencyChanged();
+    void severityChanged();
+    void certaintyChanged();
+    //void audienceChanged();
+    //eventCode
+    void effectiveChanged();
+    //void onsetChanged();
+    void expiresChanged();
+    void senderNameChanged();
+    void headlineChanged();
+    void descriptionChanged();
+    void instructionChanged();
+    void webChanged();
+    void contactChanged();
+    //parameters;
+    //area
+
+public:
     explicit CAPInfo(QObject *parent);
 
     QString m_language;
