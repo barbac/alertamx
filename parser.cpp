@@ -1,7 +1,9 @@
 #include <QDomDocument>
+#include <QMetaEnum>
 #include <QDebug>
 
 #include "parser.h"
+#include "capinfo.h"
 
 Parser::Parser()
 {
@@ -45,7 +47,33 @@ bool Parser::parseAlert(const QDomElement &alertElement, CAPAlert *alert) const
             alert->msgType = static_cast<MsgType>(child.text().toInt());
         } else if (tag.toLower() == QLatin1String("scope")) {
             alert->scope = static_cast<Scope>(child.text().toInt());
+        } else if (tag.toLower() == QLatin1String("info")) {
+            parseInfo(child, alert->info);
         }
     }
     return true;
+}
+
+void Parser::parseInfo(const QDomElement &infoElement, CAPInfo *info) const
+{
+    for (QDomNode node = infoElement.firstChild();
+         !node.isNull(); node = node.nextSibling()) {
+        if (!node.isElement())
+            continue;
+        QDomElement child = node.toElement();
+        QString tag = child.tagName();
+
+        if (tag.toLower() == QLatin1String("language")) {
+            info->m_language = child.text();
+        } else if (tag.toLower() == QLatin1String("category")) {
+            auto metaObject = CategoryGadget::staticMetaObject;
+            int index = metaObject.indexOfEnumerator("Category");
+            QMetaEnum categoryEnum = metaObject.enumerator(index);
+            bool ok;
+            int value = categoryEnum.keyToValue(child.text().toLatin1(), &ok);
+            if (!ok)
+                qCritical() << "Unknown Category value: " << child.text();
+            info->m_category = static_cast<Category>(value);
+        }
+    }
 }

@@ -2,6 +2,7 @@
 #include <QDebug>
 
 #include "parser.h"
+#include "capinfo.h"
 
 class TestParser: public QObject
 {
@@ -66,6 +67,7 @@ u8R"(<?xml version="1.0" encoding="utf-8"?>
 private slots:
     void initTestCase();
     void alert();
+    void parseInfo();
 };
 
 
@@ -86,6 +88,15 @@ void TestParser::alert()
     QCOMPARE(static_cast<int>(m_result->msgType), static_cast<int>(MsgType::Alert));
     QCOMPARE(static_cast<int>(m_result->scope), static_cast<int>(Scope::Public));
     QCOMPARE(m_result->code, QStringLiteral("08"));
+}
+
+void TestParser::parseInfo()
+{
+    CAPInfo *info = m_result->info;
+    QCOMPARE(info->m_language, QStringLiteral("es-419"));
+
+    QCOMPARE(static_cast<int>(info->m_category),
+             static_cast<int>(Category::Met));
 }
 
 QTEST_GUILESS_MAIN(TestParser)
