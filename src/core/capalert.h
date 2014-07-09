@@ -1,5 +1,4 @@
-#ifndef CAPALERT_H
-#define CAPALERT_H
+#pragma once
 
 #include <QObject>
 #include <QString>
@@ -82,5 +81,3 @@ public:
     //TODO: looks lie this should be a list
     CAPInfo *m_info = nullptr;
 };
-
-#endif // CAPALERT_H

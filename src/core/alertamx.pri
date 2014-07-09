@@ -1,0 +1,3 @@
+INCLUDEPATH += $$PWD
+CONFIG += c++11
+QT += xml

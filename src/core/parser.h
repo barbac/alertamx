@@ -1,5 +1,4 @@
-#ifndef PARSER_H
-#define PARSER_H
+#pragma once
 
 #include "capalert.h"
 
@@ -17,5 +16,3 @@ private:
     int enumFromString(const QMetaObject &metaObject, const char *enumName,
                        const QString &value) const;
 };
-
-#endif

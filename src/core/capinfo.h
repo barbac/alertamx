@@ -1,5 +1,4 @@
-#ifndef CAPINFO_H
-#define CAPINFO_H
+#pragma once
 
 #include <QObject>
 
@@ -175,5 +174,3 @@ public:
     //parameters;
     //area
 };
-
-#endif // CAPINFO_H
