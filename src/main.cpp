@@ -3,6 +3,8 @@
 
 #include <QDebug>
 #include <QFile>
+#include <QQmlContext>
+#include <QtQml>
 
 #include "capalert.h"
 #include "parser.h"
@@ -12,8 +14,10 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
+    qmlRegisterUncreatableType<CAPAlert>("alertamx", 1, 0, "AlertData", "");
 
     CAPAlert alert(nullptr);
+    engine.rootContext()->setContextProperty("alertData", &alert);
     if (argc > 1) {
         QFile file(argv[1]);
         if (file.open(QIODevice::Text | QIODevice::ReadOnly)) {
