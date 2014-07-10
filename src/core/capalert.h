@@ -34,7 +34,8 @@ class CAPAlert: public QObject
     Q_PROPERTY(QString identifier NOTIFY identifierChanged MEMBER m_identifier)
     Q_PROPERTY(QString sender NOTIFY senderChanged MEMBER m_sender)
     Q_PROPERTY(QString sent NOTIFY sentChanged MEMBER m_sent)
-    Q_PROPERTY(Status status NOTIFY statusChanged MEMBER m_status)
+    Q_PROPERTY(Status status NOTIFY statusChanged READ status WRITE setStatus)
+    Q_PROPERTY(QString statusString READ statusString CONSTANT)
     Q_PROPERTY(MsgType msgType NOTIFY msgTypeChanged MEMBER m_msgType)
     //Q_PROPERTY(QString source NOTIFY sourceChanged MEMBER m_source)
     Q_PROPERTY(Scope scope NOTIFY scopeChanged MEMBER m_scope)
@@ -50,7 +51,7 @@ signals:
     void identifierChanged();
     void senderChanged();
     void sentChanged();
-    void statusChanged();
+    void statusChanged(Status);
     void msgTypeChanged();
     //void sourceChanged();
     void scopeChanged();
@@ -62,8 +63,14 @@ signals:
     //void incidentsChanged();
     void infoChanged();
 
+public slots:
+    void setStatus(Status status);
+
 public:
     explicit CAPAlert(QObject *parent);
+    Status status() const;
+    QString statusString() const;
+
 
     QString m_identifier;
     QString m_sender;
