@@ -5,27 +5,48 @@
 
 class CAPInfo;
 
-enum class Status {
-    Actual,
-    Exercise,
-    System,
-    Test,
-    Draft
-};
+class StatusGadget {
+    Q_GADGET
+    Q_ENUMS(Status)
 
-enum class MsgType {
-    Alert,
-    Update,
-    Cancel,
-    Ack,
-    Error
+public:
+    enum class Status {
+        Actual,
+        Exercise,
+        System,
+        Test,
+        Draft
+    };
 };
+typedef StatusGadget::Status Status;
 
-enum class Scope {
-    Public,
-    Restricted,
-    Private
+class MsgTypeGadget {
+    Q_GADGET
+    Q_ENUMS(MsgType)
+
+public:
+    enum class MsgType {
+        Alert,
+        Update,
+        Cancel,
+        Ack,
+        Error
+    };
 };
+typedef MsgTypeGadget::MsgType MsgType;
+
+class ScopeGadget {
+    Q_GADGET
+    Q_ENUMS(Scope)
+
+public:
+    enum class Scope {
+        Public,
+        Restricted,
+        Private
+    };
+};
+typedef ScopeGadget::Scope Scope;
 
 class CAPAlert: public QObject
 {
