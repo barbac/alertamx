@@ -102,7 +102,9 @@ class CAPInfo : public QObject
     Q_OBJECT
 
     Q_PROPERTY(QString language NOTIFY languageChanged MEMBER m_language)
-    Q_PROPERTY(Category category NOTIFY categoryChanged MEMBER m_category)
+    Q_PROPERTY(Category category READ category WRITE setCategory
+               NOTIFY categoryChanged)
+    Q_PROPERTY(QString categoryString READ categoryString CONSTANT)
     Q_PROPERTY(QString event NOTIFY eventChanged MEMBER m_event)
     Q_PROPERTY(ResponseType responseType NOTIFY responseTypeChanged MEMBER m_responseType)
     Q_PROPERTY(Urgency urgency NOTIFY urgencyChanged MEMBER m_urgency)
@@ -124,7 +126,7 @@ class CAPInfo : public QObject
 
 signals:
     void languageChanged();
-    void categoryChanged();
+    void categoryChanged(Category);
     void eventChanged();
     void responseTypeChanged();
     void urgencyChanged();
@@ -144,8 +146,13 @@ signals:
     //parameters;
     //area
 
+public slots:
+    void setCategory(Category category);
+
 public:
     explicit CAPInfo(QObject *parent);
+    Category category() const;
+    QString categoryString() const;
 
     QString m_language;
     //TODO: find out what exactly does this means:
