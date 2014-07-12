@@ -88,11 +88,11 @@ QString CAPAlert::scopeString() const
 {
     switch (m_scope) {
     case Scope::Public:
-        return QStringLiteral("Public");
+        return tr("Public");
     case Scope::Restricted:
-        return QStringLiteral("Restricted");
+        return tr("Restricted");
     case Scope::Private:
-        return QStringLiteral("Private");
+        return tr("Private");
     default:
         return "";
     }
