@@ -7,6 +7,7 @@
 #include <QtQml>
 
 #include "capalert.h"
+#include "capinfo.h"
 #include "parser.h"
 
 int main(int argc, char *argv[])
@@ -18,6 +19,7 @@ int main(int argc, char *argv[])
 
     CAPAlert alert(nullptr);
     engine.rootContext()->setContextProperty("alertData", &alert);
+    engine.rootContext()->setContextProperty("infoData", alert.m_info);
     if (argc > 1) {
         QFile file(argv[1]);
         if (file.open(QIODevice::Text | QIODevice::ReadOnly)) {
