@@ -8,6 +8,7 @@ class TestAlert: public QObject
     Q_OBJECT
 private slots:
     void status();
+    void msgType();
 };
 
 void test_string_values_from_enums(const QMetaObject metaObject,
@@ -41,6 +42,19 @@ void TestAlert::status()
         return alert.statusString();
     };
     test_string_values_from_enums(StatusGadget::staticMetaObject, callBack);
+}
+
+void TestAlert::msgType()
+{
+    CAPAlert alert(nullptr);
+    alert.setMsgType(MsgType::Alert);
+    QCOMPARE(alert.msgTypeString(), QStringLiteral("Alert"));
+
+    auto callBack = [&alert](int value) -> QString {
+        alert.setMsgType(static_cast<MsgType>(value));
+        return alert.msgTypeString();
+    };
+    test_string_values_from_enums(MsgTypeGadget::staticMetaObject, callBack);
 }
 
 QTEST_GUILESS_MAIN(TestAlert)

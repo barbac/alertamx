@@ -11,6 +11,14 @@ void CAPAlert::setStatus(Status status)
     }
 }
 
+void CAPAlert::setMsgType(MsgType msgType)
+{
+    if (m_msgType != msgType) {
+        m_msgType = msgType;
+        emit msgTypeChanged(msgType);
+    }
+}
+
 CAPAlert::CAPAlert(QObject *parent) :
     QObject(parent)
 {
@@ -36,6 +44,29 @@ QString CAPAlert::statusString() const
         return tr("Draft");
     default:
         qWarning() << "Invalid Status value";
+        return "";
+    }
+}
+
+MsgType CAPAlert::msgType() const
+{
+    return m_msgType;
+}
+
+QString CAPAlert::msgTypeString() const
+{
+    switch (m_msgType) {
+    case MsgType::Alert:
+        return tr("Alert");
+    case MsgType::Update:
+        return tr("Update");
+    case MsgType::Cancel:
+        return tr("Cancel");
+    case MsgType::Ack:
+        return tr("Acknowledges");
+    case MsgType::Error:
+        return tr("Error");
+    default:
         return "";
     }
 }
