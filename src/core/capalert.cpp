@@ -19,6 +19,14 @@ void CAPAlert::setMsgType(MsgType msgType)
     }
 }
 
+void CAPAlert::setScope(Scope scope)
+{
+    if (m_scope != scope) {
+        m_scope = scope;
+        emit scopeChanged(scope);
+    }
+}
+
 CAPAlert::CAPAlert(QObject *parent) :
     QObject(parent)
 {
@@ -66,6 +74,25 @@ QString CAPAlert::msgTypeString() const
         return tr("Acknowledges");
     case MsgType::Error:
         return tr("Error");
+    default:
+        return "";
+    }
+}
+
+Scope CAPAlert::scope() const
+{
+    return m_scope;
+}
+
+QString CAPAlert::scopeString() const
+{
+    switch (m_scope) {
+    case Scope::Public:
+        return QStringLiteral("Public");
+    case Scope::Restricted:
+        return QStringLiteral("Restricted");
+    case Scope::Private:
+        return QStringLiteral("Private");
     default:
         return "";
     }
