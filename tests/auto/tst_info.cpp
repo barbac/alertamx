@@ -8,6 +8,7 @@ class TestInfo: public QObject
     Q_OBJECT
 private slots:
     void category();
+    void responseType();
 };
 
 void test_string_values_from_enums(const QMetaObject metaObject,
@@ -32,6 +33,20 @@ void TestInfo::category()
         return info.categoryString();
     };
     test_string_values_from_enums(CategoryGadget::staticMetaObject, callBack);
+}
+
+void TestInfo::responseType()
+{
+    CAPInfo info(nullptr);
+    info.setResponseType(ResponseType::Avoid);
+    QCOMPARE(info.responseTypeString(), QStringLiteral("Avoid"));
+
+    auto callBack = [&info](int value) -> QString {
+        info.setResponseType(static_cast<ResponseType>(value));
+        return info.responseTypeString();
+    };
+    test_string_values_from_enums(ResponseTypeGadget::staticMetaObject,
+                                  callBack);
 }
 
 QTEST_GUILESS_MAIN(TestInfo)

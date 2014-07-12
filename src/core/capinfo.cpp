@@ -15,6 +15,14 @@ void CAPInfo::setCategory(Category category)
     }
 }
 
+void CAPInfo::setResponseType(ResponseType responseType)
+{
+    if (m_responseType != responseType) {
+        m_responseType = responseType;
+        emit responseTypeChanged(responseType);
+    }
+}
+
 Category CAPInfo::category() const
 {
     return m_category;
@@ -49,6 +57,38 @@ QString CAPInfo::categoryString() const
         return tr("Other");
     default:
         qWarning() << "Invalid \"Category\" value";
+        return "";
+    }
+}
+
+ResponseType CAPInfo::responseType() const
+{
+    return m_responseType;
+}
+
+QString CAPInfo::responseTypeString() const
+{
+    switch (m_responseType) {
+    case ResponseType::Shelter:
+        return tr("Shelter");
+    case ResponseType::Evacuate:
+        return tr("Evacuate");
+    case ResponseType::Prepare:
+        return tr("Prepare");
+    case ResponseType::Execute:
+        return tr("Execute");
+    case ResponseType::Avoid:
+        return tr("Avoid");
+    case ResponseType::Monitor:
+        return tr("Monitor");
+    case ResponseType::Assess:
+        return tr("Assess");
+    case ResponseType::AllClear:
+        return tr("AllClear");
+    case ResponseType::None:
+        return tr("None");
+    default:
+        qWarning() << "Invalid \"ResponseType\" value";
         return "";
     }
 }
