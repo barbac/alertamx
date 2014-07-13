@@ -12,6 +12,7 @@ void CAPInfo::setCategory(Category category)
     if (m_category != category) {
         m_category = category;
         emit categoryChanged(category);
+        emit categoryStringChanged(categoryString());
     }
 }
 
@@ -20,6 +21,7 @@ void CAPInfo::setResponseType(ResponseType responseType)
     if (m_responseType != responseType) {
         m_responseType = responseType;
         emit responseTypeChanged(responseType);
+        emit responseTypeStringChanged(responseTypeString());
     }
 }
 
@@ -28,6 +30,7 @@ void CAPInfo::setUrgency(Urgency urgency)
     if (m_urgency != urgency) {
         m_urgency = urgency;
         emit urgencyChanged(urgency);
+        emit urgencyStringChanged(urgencyString());
     }
 }
 

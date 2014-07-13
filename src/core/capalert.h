@@ -56,13 +56,16 @@ class CAPAlert: public QObject
     Q_PROPERTY(QString sender NOTIFY senderChanged MEMBER m_sender)
     Q_PROPERTY(QString sent NOTIFY sentChanged MEMBER m_sent)
     Q_PROPERTY(Status status NOTIFY statusChanged READ status WRITE setStatus)
-    Q_PROPERTY(QString statusString READ statusString CONSTANT)
+    Q_PROPERTY(QString statusString READ statusString
+               NOTIFY statusStringChanged)
     Q_PROPERTY(MsgType msgType NOTIFY msgTypeChanged READ msgType
                WRITE setMsgType)
-    Q_PROPERTY(QString msgTypeString READ msgTypeString CONSTANT)
+    Q_PROPERTY(QString msgTypeString READ msgTypeString
+               NOTIFY msgTypeStringChanged)
     //Q_PROPERTY(QString source NOTIFY sourceChanged MEMBER m_source)
     Q_PROPERTY(Scope scope READ scope WRITE setScope NOTIFY scopeChanged)
-    Q_PROPERTY(QString scopeString READ scopeString CONSTANT)
+    Q_PROPERTY(QString scopeString READ scopeString
+               NOTIFY scopeStringChanged)
     //Q_PROPERTY(QString restriction NOTIFY restrictionChanged MEMBER m_restriction)
     //Q_PROPERTY(QString addresses NOTIFY addressesChanged MEMBER m_addresses)
     Q_PROPERTY(QString code NOTIFY codeChanged MEMBER m_code)
@@ -76,9 +79,12 @@ signals:
     void senderChanged();
     void sentChanged();
     void statusChanged(Status);
+    void statusStringChanged(QString);
     void msgTypeChanged(MsgType);
+    void msgTypeStringChanged(QString);
     //void sourceChanged();
     void scopeChanged(Scope);
+    void scopeStringChanged(QString);
     //void restrictionChanged();
     //void addressesChanged();
     void codeChanged();

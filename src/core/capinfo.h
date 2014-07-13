@@ -104,14 +104,17 @@ class CAPInfo : public QObject
     Q_PROPERTY(QString language NOTIFY languageChanged MEMBER m_language)
     Q_PROPERTY(Category category READ category WRITE setCategory
                NOTIFY categoryChanged)
-    Q_PROPERTY(QString categoryString READ categoryString CONSTANT)
+    Q_PROPERTY(QString categoryString READ categoryString
+               NOTIFY categoryStringChanged)
     Q_PROPERTY(QString event NOTIFY eventChanged MEMBER m_event)
     Q_PROPERTY(ResponseType responseType READ responseType
                WRITE setResponseType NOTIFY responseTypeChanged)
-    Q_PROPERTY(QString responseTypeString READ responseTypeString CONSTANT)
+    Q_PROPERTY(QString responseTypeString READ responseTypeString
+               NOTIFY responseTypeStringChanged)
     Q_PROPERTY(Urgency urgency READ urgency WRITE setUrgency
                NOTIFY urgencyChanged)
-    Q_PROPERTY(QString urgencyString READ urgencyString)
+    Q_PROPERTY(QString urgencyString READ urgencyString
+               NOTIFY urgencyStringChanged)
     Q_PROPERTY(Severity severity READ severity WRITE setSeverity
                NOTIFY severityChanged)
     Q_PROPERTY(QString severityString READ severityString
@@ -137,9 +140,12 @@ class CAPInfo : public QObject
 signals:
     void languageChanged();
     void categoryChanged(Category);
+    void categoryStringChanged(QString);
     void eventChanged();
     void responseTypeChanged(ResponseType);
+    void responseTypeStringChanged(QString);
     void urgencyChanged(Urgency);
+    void urgencyStringChanged(QString);
     void severityChanged(Severity);
     void severityStringChanged(QString);
     void certaintyChanged(Certainty);

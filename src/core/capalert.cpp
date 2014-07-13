@@ -8,6 +8,7 @@ void CAPAlert::setStatus(Status status)
     if (m_status != status) {
         m_status = status;
         emit statusChanged(status);
+        emit statusStringChanged(statusString());
     }
 }
 
@@ -16,6 +17,7 @@ void CAPAlert::setMsgType(MsgType msgType)
     if (m_msgType != msgType) {
         m_msgType = msgType;
         emit msgTypeChanged(msgType);
+        emit msgTypeStringChanged(msgTypeString());
     }
 }
 
@@ -24,6 +26,7 @@ void CAPAlert::setScope(Scope scope)
     if (m_scope != scope) {
         m_scope = scope;
         emit scopeChanged(scope);
+        emit scopeStringChanged(scopeString());
     }
 }
 
