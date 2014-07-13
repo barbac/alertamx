@@ -40,6 +40,15 @@ void CAPInfo::setSeverity(Severity severity)
     }
 }
 
+void CAPInfo::setCertainty(Certainty certainty)
+{
+    if (m_certainty != certainty) {
+        m_certainty = certainty;
+        emit certaintyChanged(certainty);
+        emit certaintyStringChanged(certaintyString());
+    }
+}
+
 Category CAPInfo::category() const
 {
     return m_category;
@@ -151,6 +160,29 @@ QString CAPInfo::severityString() const
     case Severity::Minor:
         return tr("Minor");
     case Severity::Unknown:
+        return tr("Unknown");
+    default:
+        return "";
+    }
+}
+
+Certainty CAPInfo::certainty() const
+{
+    return m_certainty;
+}
+
+QString CAPInfo::certaintyString() const
+{
+    switch (m_certainty) {
+    case Certainty::Observed:
+        return tr("Observed");
+    case Certainty::Likely:
+        return tr("Likely");
+    case Certainty::Possible:
+        return tr("Possible");
+    case Certainty::Unlikely:
+        return tr("Unlikely");
+    case Certainty::Unknown:
         return tr("Unknown");
     default:
         return "";

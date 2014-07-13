@@ -11,6 +11,7 @@ private slots:
     void responseType();
     void urgency();
     void severity();
+    void certainty();
 };
 
 void test_string_values_from_enums(const QMetaObject metaObject,
@@ -76,6 +77,20 @@ void TestInfo::severity()
         return info.severityString();
     };
     test_string_values_from_enums(SeverityGadget::staticMetaObject,
+                                  callBack);
+}
+
+void TestInfo::certainty()
+{
+    CAPInfo info(nullptr);
+    info.setCertainty(Certainty::Observed);
+    QCOMPARE(info.certaintyString(), QStringLiteral("Observed"));
+
+    auto callBack = [&info](int value) -> QString {
+        info.setCertainty(static_cast<Certainty>(value));
+        return info.certaintyString();
+    };
+    test_string_values_from_enums(CertaintyGadget::staticMetaObject,
                                   callBack);
 }
 
