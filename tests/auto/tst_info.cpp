@@ -9,6 +9,7 @@ class TestInfo: public QObject
 private slots:
     void category();
     void responseType();
+    void urgency();
 };
 
 void test_string_values_from_enums(const QMetaObject metaObject,
@@ -46,6 +47,20 @@ void TestInfo::responseType()
         return info.responseTypeString();
     };
     test_string_values_from_enums(ResponseTypeGadget::staticMetaObject,
+                                  callBack);
+}
+
+void TestInfo::urgency()
+{
+    CAPInfo info(nullptr);
+    info.setUrgency(Urgency::Past);
+    QCOMPARE(info.urgencyString(), QStringLiteral("Past"));
+
+    auto callBack = [&info](int value) -> QString {
+        info.setUrgency(static_cast<Urgency>(value));
+        return info.urgencyString();
+    };
+    test_string_values_from_enums(UrgencyGadget::staticMetaObject,
                                   callBack);
 }
 

@@ -109,7 +109,9 @@ class CAPInfo : public QObject
     Q_PROPERTY(ResponseType responseType READ responseType
                WRITE setResponseType NOTIFY responseTypeChanged)
     Q_PROPERTY(QString responseTypeString READ responseTypeString CONSTANT)
-    Q_PROPERTY(Urgency urgency NOTIFY urgencyChanged MEMBER m_urgency)
+    Q_PROPERTY(Urgency urgency READ urgency WRITE setUrgency
+               NOTIFY urgencyChanged)
+    Q_PROPERTY(QString urgencyString READ urgencyString)
     Q_PROPERTY(Severity severity NOTIFY severityChanged MEMBER m_severity)
     Q_PROPERTY(Certainty certainty NOTIFY certaintyChanged MEMBER m_certainty)
     //Q_PROPERTY(QString audience NOTIFY audienceChanged MEMBER m_audience)
@@ -131,7 +133,7 @@ signals:
     void categoryChanged(Category);
     void eventChanged();
     void responseTypeChanged(ResponseType);
-    void urgencyChanged();
+    void urgencyChanged(Urgency);
     void severityChanged();
     void certaintyChanged();
     //void audienceChanged();
@@ -151,6 +153,7 @@ signals:
 public slots:
     void setCategory(Category category);
     void setResponseType(ResponseType responseType);
+    void setUrgency(Urgency urgency);
 
 public:
     explicit CAPInfo(QObject *parent);
@@ -158,6 +161,8 @@ public:
     QString categoryString() const;
     ResponseType responseType() const;
     QString responseTypeString() const;
+    Urgency urgency() const;
+    QString urgencyString() const;
 
     QString m_language;
     //TODO: find out what exactly does this means:

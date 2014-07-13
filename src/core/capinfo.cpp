@@ -23,6 +23,14 @@ void CAPInfo::setResponseType(ResponseType responseType)
     }
 }
 
+void CAPInfo::setUrgency(Urgency urgency)
+{
+    if (m_urgency != urgency) {
+        m_urgency = urgency;
+        emit urgencyChanged(urgency);
+    }
+}
+
 Category CAPInfo::category() const
 {
     return m_category;
@@ -89,6 +97,30 @@ QString CAPInfo::responseTypeString() const
         return tr("None");
     default:
         qWarning() << "Invalid \"ResponseType\" value";
+        return "";
+    }
+}
+
+Urgency CAPInfo::urgency() const
+{
+    return m_urgency;
+}
+
+QString CAPInfo::urgencyString() const
+{
+    switch (m_urgency) {
+    case Urgency::Immediate:
+        return tr("Immediate");
+    case Urgency::Expected:
+        return tr("Expected");
+    case Urgency::Future:
+        return tr("Future");
+    case Urgency::Past:
+        return tr("Past");
+    case Urgency::Unknown:
+        return tr("Unknown");
+    default:
+        qWarning() << "Invalid \"Urgency\" value";
         return "";
     }
 }
