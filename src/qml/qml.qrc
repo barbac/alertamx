@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>Alert.qml</file>
+        <file>Info.qml</file>
     </qresource>
 </RCC>

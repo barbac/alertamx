@@ -3,8 +3,8 @@ import QtQuick.Window 2.1
 
 Window {
     visible: true
-    width: 360
-    height: 360
+    width: 400
+    height: 650
 
     MouseArea {
         anchors.fill: parent
@@ -13,6 +13,11 @@ Window {
         }
     }
 
-    Alert {
+    Column {
+        spacing: 20
+        Alert {
+        }
+        Info {
+        }
     }
 }
