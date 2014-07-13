@@ -9,7 +9,7 @@ Parser::Parser()
 {
 }
 
-bool Parser::parse(const QString &xml, CAPAlert *alert)
+bool Parser::parseAlert(const QString &xml, CAPAlert *alert)
 {
     QString errorMsg;
     int errorLine, errorColumn;

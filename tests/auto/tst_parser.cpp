@@ -75,7 +75,7 @@ private slots:
 void TestParser::initTestCase()
 {
     m_result = new CAPAlert(this);
-    QVERIFY(m_parser.parse(m_xml, m_result));
+    QVERIFY(m_parser.parseAlert(m_xml, m_result));
 }
 
 void TestParser::alert()

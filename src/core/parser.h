@@ -8,7 +8,7 @@ class Parser
 {
 public:
     Parser();
-    bool parse(const QString &xml, CAPAlert *alert);
+    bool parseAlert(const QString &xml, CAPAlert *alert);
     bool parseAlert(const QDomElement &alertElement, CAPAlert *alert) const;
     void parseInfo(const QDomElement &infoElement, CAPInfo *info) const;
 
