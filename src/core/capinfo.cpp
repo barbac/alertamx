@@ -31,6 +31,15 @@ void CAPInfo::setUrgency(Urgency urgency)
     }
 }
 
+void CAPInfo::setSeverity(Severity severity)
+{
+    if (m_severity != severity) {
+        m_severity = severity;
+        emit severityChanged(severity);
+        emit severityStringChanged(severityString());
+    }
+}
+
 Category CAPInfo::category() const
 {
     return m_category;
@@ -121,6 +130,29 @@ QString CAPInfo::urgencyString() const
         return tr("Unknown");
     default:
         qWarning() << "Invalid \"Urgency\" value";
+        return "";
+    }
+}
+
+Severity CAPInfo::severity() const
+{
+    return m_severity;
+}
+
+QString CAPInfo::severityString() const
+{
+    switch (m_severity) {
+    case Severity::Extreme:
+        return tr("Extreme");
+    case Severity::Severe:
+        return tr("Severe");
+    case Severity::Moderate:
+        return tr("Moderate");
+    case Severity::Minor:
+        return tr("Minor");
+    case Severity::Unknown:
+        return tr("Unknown");
+    default:
         return "";
     }
 }

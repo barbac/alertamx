@@ -10,6 +10,7 @@ private slots:
     void category();
     void responseType();
     void urgency();
+    void severity();
 };
 
 void test_string_values_from_enums(const QMetaObject metaObject,
@@ -61,6 +62,20 @@ void TestInfo::urgency()
         return info.urgencyString();
     };
     test_string_values_from_enums(UrgencyGadget::staticMetaObject,
+                                  callBack);
+}
+
+void TestInfo::severity()
+{
+    CAPInfo info(nullptr);
+    info.setSeverity(Severity::Minor);
+    QCOMPARE(info.severityString(), QStringLiteral("Minor"));
+
+    auto callBack = [&info](int value) -> QString {
+        info.setSeverity(static_cast<Severity>(value));
+        return info.severityString();
+    };
+    test_string_values_from_enums(SeverityGadget::staticMetaObject,
                                   callBack);
 }
 
