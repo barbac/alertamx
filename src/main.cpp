@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
             qDebug() << "Loading:" << argv[1];
             QString xml = file.readAll();
             Parser parser;
-            if (!parser.parseAlert(xml, &alert))
+            if (!parser.parseFeed(xml, &alert))
                 qDebug() << "Unable parse:" << argv[1];
         } else {
             qDebug() << "Unable to open:" << argv[1] << file.errorString();
