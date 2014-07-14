@@ -2,32 +2,40 @@ import QtQuick 2.2
 
 Rectangle {
     id: root
-    width: column.implicitWidth
+    width: parent.width
     height: column.implicitHeight
 
     Column {
         id: column
-        spacing: 10
-        Text {
-            text: qsTr('Identifier; ') + alertData.identifier
+        spacing: 1
+        width: parent.width
+        TextInfo {
+            label: qsTr('Identifier:')
+            value: alertData.identifier
         }
-        Text {
-            text: qsTr('Sender; ') + alertData.sender
+        TextInfo {
+            label: qsTr('Sender:')
+            value: alertData.sender
         }
-        Text {
-            text: qsTr('Sent: ') + alertData.sent
+        TextInfo {
+            label: qsTr('Sent:')
+            value: alertData.sent
         }
-        Text {
-            text: qsTr('Status: ') + alertData.statusString
+        TextInfo {
+            label: qsTr('Status:')
+            value: alertData.statusString
         }
-        Text {
-            text: qsTr('Message type: ') + alertData.msgTypeString
+        TextInfo {
+            label: qsTr('Message type:')
+            value: alertData.msgTypeString
         }
-        Text {
-            text: qsTr('Scope: ') + alertData.scopeString
+        TextInfo {
+            label: qsTr('Scope:')
+            value: alertData.scopeString
         }
-        Text {
-            text: qsTr('Code: ') + alertData.code
+        TextInfo {
+            label: qsTr('Code:')
+            value: alertData.code
         }
     }
 }

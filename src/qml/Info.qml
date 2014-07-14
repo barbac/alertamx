@@ -2,63 +2,73 @@ import QtQuick 2.2
 
 Rectangle {
     id: root
-    width: column.implicitWidth
+    width: parent.width
     height: column.implicitHeight
 
     Column {
         id: column
-        spacing: 10
-        width: 400
-        Text {
-            text: qsTr('Language; ') + infoData.language
+        spacing: 1
+        width: parent.width
+
+        TextInfo {
+            label: qsTr('Language:')
+            value: infoData.language
         }
-        Text {
-            text: qsTr('Category: ') + infoData.categoryString
+        TextInfo {
+            label: qsTr('Category:')
+            value: infoData.categoryString
         }
-        Text {
-            text: qsTr('Event: ') + infoData.event
+        TextInfo {
+            label: qsTr('Event:')
+            value: infoData.event
         }
-        Text {
-            text: qsTr('Response type: ') + infoData.responseTypeString
+        TextInfo {
+            label: qsTr('Response type:')
+            value: infoData.responseTypeString
         }
-        Text {
-            text: qsTr('Urgency: ') + infoData.urgencyString
+        TextInfo {
+            label: qsTr('Urgency:')
+            value: infoData.urgencyString
         }
-        Text {
-            text: qsTr('Severity: ') + infoData.severityString
+        TextInfo {
+            label: qsTr('Severity:')
+            value: infoData.severityString
         }
-        Text {
-            text: qsTr('Certainty: ') + infoData.certaintyString
+        TextInfo {
+            label: qsTr('Certainty:')
+            value: infoData.certaintyString
         }
-        Text {
-            text: qsTr('Effective: ') + infoData.effective
+        TextInfo {
+            label: qsTr('Effective:')
+            value: infoData.effective
         }
-        Text {
-            text: qsTr('Expires: ') + infoData.expires
+        TextInfo {
+            label: qsTr('Expires:')
+            value: infoData.expires
         }
-        Text {
-            width: parent.width
-            wrapMode: Text.Wrap
-            text: qsTr('Sender name: ') + infoData.senderName
+        TextInfo {
+            label: qsTr('Sender name:')
+            value: infoData.senderName
         }
-        Text {
-            width: parent.width
-            wrapMode: Text.Wrap
-            text: qsTr('Headline: ') + infoData.headline
+        TextInfo {
+            label: qsTr('Headline:')
+            value: infoData.headline
         }
-        Text {
-            width: parent.width
-            wrapMode: Text.Wrap
-            text: qsTr('Description: ') + infoData.description
+        TextInfo {
+            label: qsTr('Description:')
+            value: infoData.description
         }
-        Text {
-            text: qsTr('Instruction: ') + infoData.instruction
+        TextInfo {
+            label: qsTr('Instruction:')
+            value: infoData.instruction
         }
-        Text {
-            text: qsTr('Web: ') + infoData.web
+        TextInfo {
+            label: qsTr('Web:')
+            value: infoData.web
         }
-        Text {
-            text: qsTr('Contact: ') + infoData.contact
+        TextInfo {
+            label: qsTr('Contact:')
+            value: infoData.contact
         }
     }
 }

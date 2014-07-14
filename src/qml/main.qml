@@ -15,6 +15,7 @@ Window {
 
     Column {
         spacing: 20
+        anchors.fill: parent
         Alert {
         }
         Info {
