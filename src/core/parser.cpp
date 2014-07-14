@@ -22,6 +22,10 @@ bool Parser::parseAlert(const QString &xml, CAPAlert *alert)
         return false;
     }
     QDomElement element = document.documentElement();
+    if (element.tagName().toLower() != "alert") {
+        qWarning() << "invalid tag name: " << element.tagName();
+        return false;
+    }
     return parseAlert(element, alert);
 }
 
