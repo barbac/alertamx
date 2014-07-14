@@ -11,17 +11,7 @@ Parser::Parser()
 
 bool Parser::parseAlert(const QString &xml, CAPAlert *alert)
 {
-    QString errorMsg;
-    int errorLine, errorColumn;
-    QDomDocument document;
-    bool success = document.setContent(xml, &errorMsg,
-                                         &errorLine, &errorColumn);
-    if (!success) {
-        qWarning() << errorMsg << "Line: " << errorLine << "Column: "
-                   << errorColumn << xml.split('\n').at(errorLine);
-        return false;
-    }
-    QDomElement element = document.documentElement();
+    QDomElement element = rootElement(xml);
     if (element.tagName().toLower() != "alert") {
         qWarning() << "invalid tag name: " << element.tagName();
         return false;
@@ -109,6 +99,20 @@ void Parser::parseInfo(const QDomElement &infoElement, CAPInfo *info) const
             info->m_contact = child.text();
         }
     }
+}
+
+QDomElement Parser::rootElement(const QString &xml) const
+{
+    QString errorMsg;
+    int errorLine, errorColumn;
+    QDomDocument document;
+    bool success = document.setContent(xml, &errorMsg,
+                                       &errorLine, &errorColumn);
+    if (!success) {
+        qWarning() << errorMsg << "Line: " << errorLine << "Column: "
+                   << errorColumn << xml.split('\n').at(errorLine);
+    }
+    return document.documentElement();
 }
 
 int Parser::enumFromString(const QMetaObject &metaObject, const char *enumName,
