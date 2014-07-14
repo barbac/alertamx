@@ -6,13 +6,6 @@ Window {
     width: 400
     height: 650
 
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            Qt.quit();
-        }
-    }
-
     ListView {
         anchors.fill: parent
         model: 1
