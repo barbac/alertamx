@@ -13,12 +13,17 @@ Window {
         }
     }
 
-    Column {
-        spacing: 20
+    ListView {
         anchors.fill: parent
-        Alert {
-        }
-        Info {
+        model: 1
+        delegate: Column {
+            spacing: 20
+            width: parent.width
+            height: implicitHeight
+            Alert {
+            }
+            Info {
+            }
         }
     }
 }
