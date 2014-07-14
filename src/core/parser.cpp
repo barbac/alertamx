@@ -9,6 +9,37 @@ Parser::Parser()
 {
 }
 
+bool Parser::parseFeed(const QString &xml, CAPAlert *alert)
+{
+    QDomElement root = rootElement(xml);
+    if (root.isNull()) {
+        return false;
+    }
+    QDomNodeList nodes = root.elementsByTagName(QStringLiteral("entry"));
+    for (int i = 0; i < nodes.size(); ++i) {
+        QDomNode node = nodes.at(i);
+        if (!node.isElement()) {
+            continue;
+        }
+        QDomElement element = node.toElement();
+        auto contents = element.elementsByTagName(QStringLiteral("content"));
+        if (contents.isEmpty()) {
+            continue;
+        }
+        QDomElement firstContent = contents.at(0).toElement();
+        auto entries = firstContent.elementsByTagName(QStringLiteral("alert"));
+        if (entries.isEmpty()) {
+            continue;
+        }
+        for (int j = 0; j < entries.size(); ++j) {
+            QDomElement alertElement = entries.at(j).toElement();
+            //TODO: Parse the rest of alerts and test them.
+            return parseAlert(alertElement, alert);
+        }
+    }
+    return true;
+}
+
 bool Parser::parseAlert(const QString &xml, CAPAlert *alert)
 {
     QDomElement element = rootElement(xml);
