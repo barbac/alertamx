@@ -6,6 +6,8 @@
 #include <QQmlContext>
 #include <QtQml>
 
+#include <QNetworkAccessManager>
+
 #include "capalert.h"
 #include "capinfo.h"
 #include "parser.h"
@@ -31,6 +33,28 @@ int main(int argc, char *argv[])
         } else {
             qDebug() << "Unable to open:" << argv[1] << file.errorString();
         }
+    } else {
+        QNetworkAccessManager *manager = new QNetworkAccessManager(&alert);
+        QUrl url = QUrl(QStringLiteral("https://correo1.conagua.gob.mx/feedsmn/feedalert.aspx"));
+        QNetworkRequest request(url);
+        qDebug() << "Fetching: " << url.url();
+        QNetworkReply *reply = manager->get(request);
+        reply->setParent(manager);
+        reply->connect(reply, &QNetworkReply::finished,
+                       [manager, &alert, reply, url]() {
+            if (reply->error() != QNetworkReply::NoError) {
+                qWarning() << reply->errorString();
+                manager->deleteLater();
+                return;
+            }
+            qDebug() << "Reading: " << url.url();
+            QString xml = reply->readAll();
+            Parser parser;
+            if (!parser.parseFeed(xml, &alert))
+                qWarning() << "Unable to parse xml from:" << url.url();
+            manager->deleteLater();
+            qDebug() << "Finished fetching and parsing";
+        });
     }
 
     engine.load(QUrl(QStringLiteral("qrc:///main.qml")));
