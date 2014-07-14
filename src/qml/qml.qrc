@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>Alert.qml</file>
         <file>Info.qml</file>
+        <file>TextInfo.qml</file>
     </qresource>
 </RCC>
