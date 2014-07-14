@@ -99,6 +99,8 @@ typedef CertaintyGadget::Certainty Certainty;
 
 class CAPInfo : public QObject
 {
+    //For unit tests
+    friend class TestParser;
     Q_OBJECT
 
     Q_PROPERTY(QString language NOTIFY languageChanged MEMBER m_language)
@@ -184,6 +186,7 @@ public:
     Certainty certainty() const;
     QString certaintyString() const;
 
+private:
     QString m_language;
     //TODO: find out what exactly does this means:
     //(2)   Multiple instances MAY occur within an <info> block.

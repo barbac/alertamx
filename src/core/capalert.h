@@ -50,6 +50,8 @@ typedef ScopeGadget::Scope Scope;
 
 class CAPAlert: public QObject
 {
+    //For unit tests
+    friend class TestParser;
     Q_OBJECT
 
     Q_PROPERTY(QString identifier NOTIFY identifierChanged MEMBER m_identifier)
@@ -107,6 +109,9 @@ public:
     Scope scope() const;
     QString scopeString() const;
 
+    CAPInfo *m_info = nullptr;
+
+private:
     QString m_identifier;
     QString m_sender;
     QString m_sent;
@@ -121,5 +126,4 @@ public:
     //QString m_references;
     //QString m_incidents;
     //TODO: looks lie this should be a list
-    CAPInfo *m_info = nullptr;
 };
