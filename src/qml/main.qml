@@ -2,6 +2,7 @@ import QtQuick 2.2
 import QtQuick.Window 2.1
 
 Window {
+    id: root
     visible: true
     width: 400
     height: 650
@@ -36,7 +37,20 @@ Window {
         }
     }
 
+    Progressbar {
+        id: progressbar
+        width: parent.width
+        progress: {
+            typeof feedProgress !== 'undefined' ?
+                       feedProgress : timerLoader.item
+        }
+        targetItem: alerts
+        text: qsTr('CONAGUA server')
+    }
+
     ListView {
+        id: alerts
+        opacity: 0
         anchors.fill: parent
         model: 1
         delegate: Column {

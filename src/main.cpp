@@ -39,6 +39,7 @@ int main(int argc, char *argv[])
         QNetworkRequest request(url);
         qDebug() << "Fetching: " << url.url();
         QNetworkReply *reply = manager->get(request);
+        engine.rootContext()->setContextProperty("feedProgress", reply);
         reply->setParent(manager);
         reply->connect(reply, &QNetworkReply::finished,
                        [manager, &alert, reply, url]() {
