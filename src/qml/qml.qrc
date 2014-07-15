@@ -4,5 +4,6 @@
         <file>Alert.qml</file>
         <file>Info.qml</file>
         <file>TextInfo.qml</file>
+        <file>Progressbar.qml</file>
     </qresource>
 </RCC>
