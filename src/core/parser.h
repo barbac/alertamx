@@ -12,6 +12,7 @@ public:
     bool parseAlert(const QString &xml, CAPAlert *alert);
     bool parseAlert(const QDomElement &alertElement, CAPAlert *alert) const;
     void parseInfo(const QDomElement &infoElement, CAPInfo *info) const;
+    void parseArea(const QDomElement &areaElement, CAPInfo *info) const;
 
 private:
     QDomElement rootElement(const QString &xml) const;

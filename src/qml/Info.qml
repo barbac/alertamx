@@ -70,5 +70,13 @@ Rectangle {
             label: qsTr('Contact:')
             value: infoData.contact
         }
+        TextInfo {
+            label: qsTr('Area:')
+            value: infoData.areaDesc
+        }
+        TextInfo {
+            label: qsTr('Area:')
+            value: infoData.areaValue
+        }
     }
 }

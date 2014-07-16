@@ -122,6 +122,11 @@ void TestParser::parseInfo()
     QCOMPARE(info->m_instruction, QStringLiteral("ninguno"));
     QCOMPARE(info->m_web, QStringLiteral("http://smn.cna.gob.mx/"));
     QCOMPARE(info->m_contact, QStringLiteral("webmaster@conagua.gob.mx"));
+
+    //Area
+    QCOMPARE(info->m_areaDesc, QStringLiteral("2217 KM al nor-noreste de Cabo Catoche, Q. Roo 2241 KM al nor-noreste de Cancún, Q. Roo 2280 KM al nor-noreste de Río Lagartos, Yuc. 2366 KM al nor-noreste de Tulum, Q. Roo 2342 KM al nor-noreste de Dzilam, Yuc."));
+    QCOMPARE(info->m_areaValue, QStringLiteral("13.752724664397,-108.2373046875 2502.6978654433624"));
+    QCOMPARE(info->m_areaType, AreaType::circle);
 }
 
 QTEST_GUILESS_MAIN(TestParser)

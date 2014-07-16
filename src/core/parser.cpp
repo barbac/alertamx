@@ -128,6 +128,33 @@ void Parser::parseInfo(const QDomElement &infoElement, CAPInfo *info) const
             info->setProperty("web", child.text());
         } else if (tag.toLower() == QLatin1String("contact")) {
             info->setProperty("contact", child.text());
+        } else if (tag.toLower() == QLatin1String("area")) {
+            parseArea(child, info);
+        }
+    }
+}
+
+void Parser::parseArea(const QDomElement &areaElement, CAPInfo *info) const
+{
+    for (QDomNode node = areaElement.firstChild();
+         !node.isNull(); node = node.nextSibling()) {
+        if (!node.isElement())
+            continue;
+
+        QDomElement child = node.toElement();
+        QString tag = child.tagName().toLower();
+
+        if (tag == QLatin1String("areadesc")) {
+            info->setAreaDesc(child.text());
+        } else if (tag == QLatin1String("polygon")) {
+            info->setAreaType(AreaType::polygon);
+            info->setAreaValue(child.text());
+        } else if (tag == QLatin1String("circle")) {
+            info->setAreaType(AreaType::circle);
+            info->setAreaValue(child.text());
+        } else if (tag == QLatin1String("geocode")) {
+            info->setAreaType(AreaType::geocode);
+            info->setAreaValue(child.text());
         }
     }
 }
