@@ -96,6 +96,13 @@ public:
 };
 typedef CertaintyGadget::Certainty Certainty;
 
+enum AreaType {
+    polygon,
+    circle,
+    geocode,
+    altitude,
+    ceiling
+};
 
 class CAPInfo : public QObject
 {
@@ -138,6 +145,12 @@ class CAPInfo : public QObject
     Q_PROPERTY(QString contact NOTIFY contactChanged MEMBER m_contact)
     //parameters;
     //area
+    Q_PROPERTY(QString areaDesc READ areaDesc WRITE setAreaDesc
+               NOTIFY areaDescChanged)
+    Q_PROPERTY(QString areaValue READ areaValue WRITE setAreaValue
+               NOTIFY areaValueChanged)
+    Q_PROPERTY(AreaType areaType READ areaType WRITE setAreaType
+               NOTIFY areaTypeChanged)
 
 signals:
     void languageChanged();
@@ -165,6 +178,9 @@ signals:
     void contactChanged();
     //parameters;
     //area
+    void areaDescChanged(QString areaDesc);
+    void areaValueChanged(QString areaValue);
+    void areaTypeChanged(AreaType areaType);
 
 public slots:
     void setCategory(Category category);
@@ -172,6 +188,9 @@ public slots:
     void setUrgency(Urgency urgency);
     void setSeverity(Severity severity);
     void setCertainty(Certainty certainty);
+    void setAreaDesc(QString areaDesc);
+    void setAreaValue(QString areaValue);
+    void setAreaType(AreaType areaType);
 
 public:
     explicit CAPInfo(QObject *parent);
@@ -185,6 +204,9 @@ public:
     QString severityString() const;
     Certainty certainty() const;
     QString certaintyString() const;
+    QString areaDesc() const;
+    QString areaValue() const;
+    AreaType areaType() const;
 
 private:
     QString m_language;
@@ -212,5 +234,9 @@ private:
     QString m_web;
     QString m_contact;
     //parameters;
-    //area
+    //TODO: make this a list
+    //Area m_area;
+    QString m_areaDesc;
+    QString m_areaValue;
+    AreaType m_areaType;
 };

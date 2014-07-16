@@ -52,6 +52,30 @@ void CAPInfo::setCertainty(Certainty certainty)
     }
 }
 
+void CAPInfo::setAreaDesc(QString areaDesc)
+{
+    if (m_areaDesc != areaDesc) {
+        m_areaDesc = areaDesc;
+        emit areaDescChanged(areaDesc);
+    }
+}
+
+void CAPInfo::setAreaValue(QString areaValue)
+{
+    if (m_areaValue != areaValue) {
+        m_areaValue = areaValue;
+        emit areaValueChanged(areaValue);
+    }
+}
+
+void CAPInfo::setAreaType(AreaType areaType)
+{
+    if (m_areaType != areaType) {
+        m_areaType = areaType;
+        emit areaTypeChanged(areaType);
+    }
+}
+
 Category CAPInfo::category() const
 {
     return m_category;
@@ -190,4 +214,19 @@ QString CAPInfo::certaintyString() const
     default:
         return "";
     }
+}
+
+QString CAPInfo::areaDesc() const
+{
+    return m_areaDesc;
+}
+
+QString CAPInfo::areaValue() const
+{
+    return m_areaValue;
+}
+
+AreaType CAPInfo::areaType() const
+{
+    return m_areaType;
 }
