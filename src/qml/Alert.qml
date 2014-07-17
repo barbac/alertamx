@@ -2,6 +2,7 @@ import QtQuick 2.2
 
 Rectangle {
     id: root
+    property QtObject alertData
     width: parent.width
     height: column.implicitHeight
 

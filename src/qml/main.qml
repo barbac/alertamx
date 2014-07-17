@@ -66,6 +66,35 @@ Window {
                 wrapMode: Text.Wrap
                 anchors.centerIn: parent
             }
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    alertView.visible = true;
+                    alerts.visible = false;
+                    alertView.alert = alert;
+                }
+            }
         }
     }
+
+    Rectangle {
+        id: alertView
+        property QtObject alert
+        visible: false
+        anchors.fill: parent
+        onAlertChanged: {
+            if (alertLoader.active)
+                alertLoader.item.alertData = alert;
+            else
+                alertLoader.active = true;
+        }
+        Loader {
+            anchors.fill: parent
+            onLoaded: item.alertData = parent.alert
+            active: false
+            id: alertLoader
+            sourceComponent: Alert{}
+        }
+    }
+
 }
