@@ -2,6 +2,7 @@
 #include <QDebug>
 
 #include "parser.h"
+#include "alertsmodel.h"
 #include "capinfo.h"
 
 
@@ -9,10 +10,7 @@
 //<feed xmlns="http://www.w3.org/2005/Atom"> seems to be the problematic part
 static const QString xmlFeed =
 u8R"(<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-)"
-u8R"(<?xml version="1.0" encoding="utf-8"?>
-u8R"(
+<feed>
   <title type="text">Avisos del SMN</title>
   <id>https://correo1.conagua.gob.mx/feedsmn</id>
   <rights type="text">Comisión Nacional del Agua</rights>
@@ -99,7 +97,7 @@ u8R"(<?xml version="1.0" encoding="utf-8"?>
 
 private slots:
     void initTestCase();
-    void feed();
+    void parseFeed();
     void alert();
     void parseInfo();
 };
@@ -112,9 +110,13 @@ void TestParser::initTestCase()
     QVERIFY(m_parser.parseAlert(m_xml, m_result));
 }
 
-void TestParser::feed()
+void TestParser::parseFeed()
 {
-    qDebug() << xmlFeed;
+    AlertsModel model(nullptr);
+    bool success = m_parser.parseFeed(xmlFeed, &model);
+    QVERIFY(success);
+    //2 alerts in the test xml
+    QCOMPARE(model.rowCount(), 2);
 }
 
 void TestParser::alert()

@@ -9,12 +9,13 @@ Parser::Parser()
 {
 }
 
-bool Parser::parseFeed(const QString &xml, CAPAlert *alert)
+bool Parser::parseFeed(const QString &xml, AlertsModel *model)
 {
     QDomElement root = rootElement(xml);
     if (root.isNull()) {
         return false;
     }
+    bool successParsingAlerts = true;
     QDomNodeList nodes = root.elementsByTagName(QStringLiteral("entry"));
     for (int i = 0; i < nodes.size(); ++i) {
         QDomNode node = nodes.at(i);
@@ -26,6 +27,7 @@ bool Parser::parseFeed(const QString &xml, CAPAlert *alert)
         if (contents.isEmpty()) {
             continue;
         }
+
         QDomElement firstContent = contents.at(0).toElement();
         auto entries = firstContent.elementsByTagName(QStringLiteral("alert"));
         if (entries.isEmpty()) {
@@ -34,10 +36,13 @@ bool Parser::parseFeed(const QString &xml, CAPAlert *alert)
         for (int j = 0; j < entries.size(); ++j) {
             QDomElement alertElement = entries.at(j).toElement();
             //TODO: Parse the rest of alerts and test them.
-            return parseAlert(alertElement, alert);
+            auto alert = model->appendAlert();
+            if (!parseAlert(alertElement, alert)) {
+                successParsingAlerts = false;
+            }
         }
     }
-    return true;
+    return successParsingAlerts;
 }
 
 bool Parser::parseAlert(const QString &xml, CAPAlert *alert)
