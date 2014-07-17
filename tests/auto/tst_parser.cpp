@@ -4,6 +4,39 @@
 #include "parser.h"
 #include "capinfo.h"
 
+
+//This gives linking errors if a single raw string is used
+//<feed xmlns="http://www.w3.org/2005/Atom"> seems to be the problematic part
+static const QString xmlFeed =
+u8R"(<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+)"
+u8R"(<?xml version="1.0" encoding="utf-8"?>
+u8R"(
+  <title type="text">Avisos del SMN</title>
+  <id>https://correo1.conagua.gob.mx/feedsmn</id>
+  <rights type="text">Comisión Nacional del Agua</rights>
+  <updated>2014-07-06T01:49:48-05:00</updated>
+  <entry>
+    <id>194aafab-f636-49ef-ad5e-37a1aef8d132</id>
+    <title type="text">HURACÁN “ARTHUR” AHORA CON CATEGORIA I</title>
+    <updated>2014-07-04T10:15:00-05:00</updated>
+    <content type="text/xml">
+      <alert xmlns="urn:oasis:names:tc:emergency:cap:1.2">
+      </alert>
+    </content>
+  </entry>
+  <entry>
+    <id>ba9f80b8-e27d-4516-b5f2-7b66021bedb6</id>
+    <title type="text">BAJA PRESIÓN  EN EL GOLFO DE MÉXICO MANTIENE BAJO POTENCIAL DE DESARROLLO CICLÓNICO</title>
+    <updated>2014-06-05T10:15:00-05:00</updated>
+    <content type="text/xml">
+      <alert xmlns="urn:oasis:names:tc:emergency:cap:1.2">
+      </alert>
+    </content>
+  </entry>
+</feed>)";
+
 class TestParser: public QObject
 {
     Q_OBJECT
@@ -66,6 +99,7 @@ u8R"(<?xml version="1.0" encoding="utf-8"?>
 
 private slots:
     void initTestCase();
+    void feed();
     void alert();
     void parseInfo();
 };
@@ -76,6 +110,11 @@ void TestParser::initTestCase()
 {
     m_result = new CAPAlert(this);
     QVERIFY(m_parser.parseAlert(m_xml, m_result));
+}
+
+void TestParser::feed()
+{
+    qDebug() << xmlFeed;
 }
 
 void TestParser::alert()
