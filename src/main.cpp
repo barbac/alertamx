@@ -10,6 +10,7 @@
 
 #include "alertsmodel.h"
 #include "parser.h"
+#include "capinfo.h"
 
 int main(int argc, char *argv[])
 {
@@ -17,6 +18,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     qmlRegisterUncreatableType<CAPAlert>("alertamx", 1, 0, "AlertData", "");
+    qmlRegisterUncreatableType<CAPInfo>("alertamx", 1, 0, "AlertInfo", "");
 
     AlertsModel model(nullptr);
     engine.rootContext()->setContextProperty("alertsModel", &model);

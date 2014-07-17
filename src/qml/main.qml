@@ -51,15 +51,20 @@ Window {
     ListView {
         id: alerts
         opacity: 0
+        spacing: 5
         anchors.fill: parent
-        model: 1
-        delegate: Column {
-            spacing: 20
+        model: alertsModel
+        delegate: Rectangle {
             width: parent.width
-            height: implicitHeight
-            Alert {
-            }
-            Info {
+            color: 'lightskyblue'
+            height: eventLabel.implicitHeight + 10
+            Text {
+                id: eventLabel
+                text: alert.info.event
+                x: 10
+                width: alerts.width - 10
+                wrapMode: Text.Wrap
+                anchors.centerIn: parent
             }
         }
     }
