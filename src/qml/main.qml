@@ -51,12 +51,12 @@ Window {
     ListView {
         id: alerts
         opacity: 0
-        spacing: 5
+        spacing: 2
         anchors.fill: parent
         model: alertsModel
         delegate: Rectangle {
             width: parent.width
-            color: 'lightskyblue'
+            color: 'azure'
             height: eventLabel.implicitHeight + 10
             Text {
                 id: eventLabel
