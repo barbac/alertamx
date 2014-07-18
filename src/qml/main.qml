@@ -60,7 +60,7 @@ Window {
             height: eventLabel.implicitHeight + 10
             Text {
                 id: eventLabel
-                text: alert.info.event
+                text: alert.info.headline
                 x: 10
                 width: alerts.width - 10
                 wrapMode: Text.Wrap
