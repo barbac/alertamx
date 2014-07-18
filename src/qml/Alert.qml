@@ -1,15 +1,17 @@
 import QtQuick 2.2
+import QtQuick.Layouts 1.1
 
-Rectangle {
+Flickable {
     id: root
     property QtObject alertData
-    width: parent.width
-    height: column.implicitHeight
+    anchors.fill: parent
+    contentHeight: column.height
+    contentWidth: column.width
 
-    Column {
+    ColumnLayout {
         id: column
         spacing: 1
-        width: parent.width
+
         TextInfo {
             label: qsTr('Identifier:')
             value: alertData.identifier
@@ -37,6 +39,9 @@ Rectangle {
         TextInfo {
             label: qsTr('Code:')
             value: alertData.code
+        }
+        Info {
+            infoData: alertData.info
         }
     }
 }

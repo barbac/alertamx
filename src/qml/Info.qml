@@ -1,11 +1,13 @@
 import QtQuick 2.2
+import QtQuick.Layouts 1.1
 
 Rectangle {
     id: root
+    property var infoData
     width: parent.width
     height: column.implicitHeight
 
-    Column {
+    ColumnLayout {
         id: column
         spacing: 1
         width: parent.width
