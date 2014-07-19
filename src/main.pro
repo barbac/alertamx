@@ -13,3 +13,7 @@ PRE_TARGETDEPS += core/libalertamx.a
 
 # Default rules for deployment.
 include(deployment.pri)
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
+OTHER_FILES += \
+    $$PWD/android/AndroidManifest.xml
