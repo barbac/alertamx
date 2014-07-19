@@ -1,15 +1,14 @@
 import QtQuick 2.2
-import QtQuick.Layouts 1.1
 
 Flickable {
     id: root
     property QtObject alertData
     anchors.fill: parent
     contentHeight: column.height
-    contentWidth: column.width
 
-    ColumnLayout {
+    Column {
         id: column
+        width: parent.width
         spacing: 1
 
         TextInfo {

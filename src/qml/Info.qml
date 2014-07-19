@@ -1,5 +1,4 @@
 import QtQuick 2.2
-import QtQuick.Layouts 1.1
 
 Rectangle {
     id: root
@@ -7,7 +6,7 @@ Rectangle {
     width: parent.width
     height: column.implicitHeight
 
-    ColumnLayout {
+    Column {
         id: column
         spacing: 1
         width: parent.width
