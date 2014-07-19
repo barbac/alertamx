@@ -6,6 +6,7 @@
     android:versionCode="1"
     android:installLocation="auto">
     <application android:label="alertamx dev"
+        android:icon="@drawable/icon"
         android:hardwareAccelerated="true" android:name="org.qtproject.qt5.android.bindings.QtApplication">
         <activity
             android:label="alertamx dev"
