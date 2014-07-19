@@ -88,19 +88,31 @@ Window {
             else
                 alertLoader.active = true;
         }
+        Rectangle {
+            id: backButton
+            color: "skyblue"
+            width: parent.width
+            height: backButtonLabel.height * 3
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    alertView.visible = false;
+                    alerts.visible = true;
+                }
+            }
+            Text {
+                id: backButtonLabel
+                anchors.centerIn: parent
+                text: qsTr("< Lista de alertas")
+            }
+        }
         Loader {
             anchors.fill: parent
+            anchors.topMargin: backButton.height
             onLoaded: item.alertData = parent.alert
             active: false
             id: alertLoader
             sourceComponent: Alert{}
-        }
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                alertView.visible = false;
-                alerts.visible = true;
-            }
         }
     }
 
