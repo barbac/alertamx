@@ -95,6 +95,13 @@ Window {
             id: alertLoader
             sourceComponent: Alert{}
         }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                alertView.visible = false;
+                alerts.visible = true;
+            }
+        }
     }
 
 }
